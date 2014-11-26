@@ -1,0 +1,29 @@
+{
+  "name": "react-remarkable",
+  "version": "1.0.0",
+  "description": "A React component for rendering Markdown with remarkable",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acdlite/react-remarkable.git"
+  },
+  "dependencies": {
+    "react": "^0.12.1",
+    "remarkable": "^1.4.1"
+  },
+  "devDependencies": {
+    "6to5": "^1.13.11"
+  },
+  "scripts": {
+    "build": "6to5 src -d dist --modules commonInterop",
+    "prepublish": "npm run build"
+  },
+  "keywords": [
+    "react",
+    "remarkable",
+    "markdown",
+    "commonmark"
+  ],
+  "author": "Andrew Clark <acdlite@me.com>",
+  "license": "MIT"
+}

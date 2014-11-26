@@ -1,0 +1,23 @@
+{
+  "indent": 2,
+  "globalstrict": true,
+  "newcap": false,
+
+  "node": true,
+  "browser": true,
+
+  "unused": "vars",
+  "esnext": true,
+  "laxbreak": true,
+
+  "globals": {
+    "Promise": true,
+
+    "describe": true,
+    "before": true,
+    "after": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "it": true
+  }
+}
