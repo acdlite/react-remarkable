@@ -3,46 +3,55 @@
 import React from 'react';
 import Markdown from 'remarkable';
 
-var md = new Markdown('full');
-
 var Remarkable = React.createClass({
 
   getDefaultProps() {
     return {
-      component: 'div',
+      container: 'div',
+      options: {},
     };
   },
 
   render() {
-    var Component = this.props.component;
+    var Container = this.props.container;
 
     return (
-      <Component>
-        {this.source()}
-      </Component>
+      <Container>
+        {this.content()}
+      </Container>
     );
   },
 
-  source() {
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.options !== this.props.options) {
+      this.md = new Markdown(nextProps.options);
+    }
+  },
+
+  content() {
     if (this.props.source) {
-      return <span dangerouslySetInnerHTML={{ __html: renderMarkdown(this.props.source) }} />;
+      return <span dangerouslySetInnerHTML={{ __html: this.renderMarkdown(this.props.source) }} />;
     }
     else {
-      return React.Children.map(this.props.children, function(child) {
+      return React.Children.map(this.props.children, child => {
         if (typeof child === 'string') {
-          return <span dangerouslySetInnerHTML={{ __html: renderMarkdown(child) }} />;
+          return <span dangerouslySetInnerHTML={{ __html: this.renderMarkdown(child) }} />;
         }
         else {
           return child;
         }
       });
     }
+  },
+
+  renderMarkdown(source) {
+    if (!this.md) {
+      this.md = new Markdown(this.props.options);
+    }
+
+    return this.md.render(source);
   }
 
 });
-
-function renderMarkdown(source) {
-  return md.render(source);
-}
 
 export default Remarkable;
