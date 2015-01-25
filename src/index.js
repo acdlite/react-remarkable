@@ -9,6 +9,7 @@ var Remarkable = React.createClass({
     return {
       container: 'div',
       options: {},
+      plugins: []
     };
   },
 
@@ -23,8 +24,8 @@ var Remarkable = React.createClass({
   },
 
   componentWillUpdate(nextProps, nextState) {
-    if (nextProps.options !== this.props.options) {
-      this.md = new Markdown(nextProps.options);
+    if (nextProps.options !== this.props.options || nextProps.plugins !== this.props.plugins) {
+      this.md = this.makeMarkdown(nextProps.options, nextProps.plugins);
     }
   },
 
@@ -44,9 +45,15 @@ var Remarkable = React.createClass({
     }
   },
 
+  makeMarkdown(options, plugins) {
+    return plugins.reduce((md, plugin) => {
+      return md.use(plugin);
+    }, new Markdown(options));
+  },
+
   renderMarkdown(source) {
     if (!this.md) {
-      this.md = new Markdown(this.props.options);
+      this.md = this.makeMarkdown(this.props.options, this.props.plugins);
     }
 
     return this.md.render(source);
