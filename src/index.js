@@ -10,7 +10,7 @@ var Remarkable = React.createClass({
       container: 'div',
       options: {},
       plugins: [],
-      filters: []
+      transforms: []
     };
   },
 
@@ -55,8 +55,8 @@ var Remarkable = React.createClass({
       this.md = this.makeMarkdown(this.props.options, this.props.plugins);
     }
 
-    return this.props.filters.reduce((src, filter) => {
-      return filter(src);
+    return this.props.transforms.reduce((src, transform) => {
+      return transform(src);
     }, this.md.render(source));
   }
 

@@ -38,8 +38,8 @@ var MyComponent = React.createClass({
         </Markdown>
 
         {/* Pass remarkable plugins to the `plugins` prop */}
-        {/* and filters to the `filters` prop */}
-        <Markdown source="**Markdown is awesome!**" plugins={[RemarkableEmoji]} filters={[twemoji.parse]} />
+        {/* and transforms to the `transforms` prop */}
+        <Markdown source="**Markdown is awesome!**" plugins={[RemarkableEmoji]} transforms={[twemoji.parse]} />
       </div>
     );
   }
@@ -54,7 +54,7 @@ Available props:
 - `source`  - Markdown source. You can also pass the source as children, which allows you to mix React components and Markdown.
 - `container` - Element to use as container. Defaults to `span`.
 - `plugins` - Array of remarkable plugins
-- `filters` - Array of string filters
+- `transforms` - Array of string transforms
 
 ## License
 MIT
