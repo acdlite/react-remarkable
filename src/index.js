@@ -24,10 +24,8 @@ var Remarkable = React.createClass({
     );
   },
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextProps.options !== this.props.options || nextProps.plugins !== this.props.plugins) {
-      this.md = this.makeMarkdown(nextProps.options, nextProps.plugins);
-    }
+  componentWillReceiveProps(nextProps) {
+    this.md = this.makeMarkdown(nextProps.options, nextProps.plugins);
   },
 
   content() {
