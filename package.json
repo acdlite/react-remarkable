@@ -8,14 +8,14 @@
     "url": "https://github.com/acdlite/react-remarkable.git"
   },
   "dependencies": {
-    "react": "^0.12.1",
+    "react": "^0.13.2",
     "remarkable": "^1.4.1"
   },
   "devDependencies": {
-    "6to5": "^1.13.11"
+    "babel": "^5.1.13"
   },
   "scripts": {
-    "build": "6to5 src -d dist --modules commonInterop",
+    "build": "babel src -d dist --modules common",
     "prepublish": "npm run build"
   },
   "keywords": [
