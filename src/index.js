@@ -16,7 +16,7 @@ var Remarkable = React.createClass({
     var Container = this.props.container;
 
     return (
-      <Container>
+      <Container {...this.props}>
         {this.content()}
       </Container>
     );
