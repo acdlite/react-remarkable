@@ -34,6 +34,9 @@ class Remarkable extends React.Component {
     else if (this.props.source) {
       return this.props.source !== nextProps.source;
     }
+    else if (React.Children.count(this.props.children) === 1 && React.Children.count(nextProps.children) === 1) {
+      return (typeof this.props.children === 'string') && this.props.children !== nextProps.children;
+    }
     else {
       return true;
     }
