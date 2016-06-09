@@ -1,9 +1,21 @@
 'use strict';
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import Markdown from 'remarkable';
 
 class Remarkable extends React.Component {
+  static propTypes = {
+    container: PropTypes.string,
+    options: PropTypes.object,
+    source: PropTypes.string,
+    children: PropTypes.array
+  }
+
+  static defaultProps = {
+    container: 'div',
+    options: {}
+  }
 
   render() {
     var Container = this.props.container;
