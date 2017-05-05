@@ -3,13 +3,7 @@
 import React from 'react';
 import Markdown from 'remarkable';
 
-export default class Remarkable extends React.Component {
-  getDefaultProps() {
-    return {
-      container: 'div',
-      options: {},
-    };
-  }
+class Remarkable extends React.Component {
 
   render() {
     var Container = this.props.container;
@@ -51,3 +45,10 @@ export default class Remarkable extends React.Component {
     return this.md.render(source);
   }
 }
+
+Remarkable.defaultProps = {
+  container: 'div',
+  options: {},
+};
+
+export default Remarkable;
