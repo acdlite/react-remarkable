@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "declaration": true,
+        "module": "commonjs",
+        "lib": ["es6", "dom"],
+        "sourceMap": true,
+        "allowJs": false,
+        "jsx": "react",
+        "rootDir": "src",
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitAny": false,
+        "strictNullChecks": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "noUnusedLocals": true
+    },
+    "exclude": [
+        "node_modules",
+        "dist"
+    ],
+    "types": [
+        "typePatches"
+    ]
+}
