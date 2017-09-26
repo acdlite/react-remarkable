@@ -46,7 +46,7 @@ Available props:
 
 - `options` - Hash of Remarkable options
 - `source`  - Markdown source. You can also pass the source as children, which allows you to mix React components and Markdown.
-- `container` - Element to use as container. Defaults to `span`.
+- `container` - Element to use as container. Defaults to `div`.
 
 ## Syntax Highlighting
 
