@@ -9,7 +9,10 @@ class Remarkable extends React.Component {
     container: PropTypes.string,
     options: PropTypes.object,
     source: PropTypes.string,
-    children: PropTypes.array
+    children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.node),
+      PropTypes.node
+    ])
   }
 
   static defaultProps = {
