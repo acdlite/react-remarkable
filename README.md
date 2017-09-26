@@ -16,7 +16,7 @@ var Markdown = require('react-remarkable');
 
 var MyComponent = React.createClass({
 
-  render() {
+  render: function() {
     return (
       <div>
         {/* Pass Markdown source to the `source` prop */}
@@ -25,6 +25,7 @@ var MyComponent = React.createClass({
         {/* Or pass it as children */}
         {/* You can nest React components, too */}
         <Markdown>
+        {`
           ## Reasons React is great
 
           1. Server-side rendering
@@ -33,6 +34,7 @@ var MyComponent = React.createClass({
           <SomeOtherAmazingComponent />
 
           Pretty neat!
+        `}
         </Markdown>
       </div>
     );
