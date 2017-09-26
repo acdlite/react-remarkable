@@ -3,14 +3,7 @@
 import React from 'react';
 import Markdown from 'remarkable';
 
-var Remarkable = React.createClass({
-
-  getDefaultProps() {
-    return {
-      container: 'div',
-      options: {},
-    };
-  },
+class Remarkable extends React.Component {
 
   render() {
     var Container = this.props.container;
@@ -20,13 +13,13 @@ var Remarkable = React.createClass({
         {this.content()}
       </Container>
     );
-  },
+  }
 
   componentWillUpdate(nextProps, nextState) {
     if (nextProps.options !== this.props.options) {
       this.md = new Markdown(nextProps.options);
     }
-  },
+  }
 
   content() {
     if (this.props.source) {
@@ -42,7 +35,7 @@ var Remarkable = React.createClass({
         }
       });
     }
-  },
+  }
 
   renderMarkdown(source) {
     if (!this.md) {
@@ -51,7 +44,11 @@ var Remarkable = React.createClass({
 
     return this.md.render(source);
   }
+}
 
-});
+Remarkable.defaultProps = {
+  container: 'div',
+  options: {},
+};
 
 export default Remarkable;
