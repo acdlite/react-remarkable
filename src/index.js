@@ -6,10 +6,14 @@ import Markdown from 'remarkable';
 class Remarkable extends React.Component {
 
   render() {
-    var Container = this.props.container;
+    var { container: Container, ...props } = this.props;
+
+    ['children', 'options', 'source'].forEach(prop => {
+      delete props[prop];
+    });
 
     return (
-      <Container>
+      <Container {...props}>
         {this.content()}
       </Container>
     );
