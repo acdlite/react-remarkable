@@ -17,7 +17,7 @@ class Remarkable extends React.Component {
 
   componentWillUpdate(nextProps, nextState) {
     if (nextProps.options !== this.props.options) {
-      this.md = new Markdown(nextProps.options);
+      this.md = this.createMarkdown(nextProps.options, nextProps.plugins);
     }
   }
 
@@ -39,16 +39,23 @@ class Remarkable extends React.Component {
 
   renderMarkdown(source) {
     if (!this.md) {
-      this.md = new Markdown(this.props.options);
+      this.md = this.createMarkdown(this.props.options, this.props.plugins);
     }
 
     return this.md.render(source);
+  }
+
+  createMarkdown(options, plugins) {
+    return plugins.reduce((md, plugin) => {
+      return md.use(plugin);
+    }, new Markdown(options));
   }
 }
 
 Remarkable.defaultProps = {
   container: 'div',
   options: {},
+  plugins: [],
 };
 
 export default Remarkable;

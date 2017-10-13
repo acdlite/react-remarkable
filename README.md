@@ -13,6 +13,7 @@ npm install --save react-remarkable
 
 var React = require('react');
 var Markdown = require('react-remarkable');
+var Emoji = require('remarkable-emoji');
 
 var MyComponent = React.createClass({
 
@@ -20,7 +21,7 @@ var MyComponent = React.createClass({
     return (
       <div>
         {/* Pass Markdown source to the `source` prop */}
-        <Markdown source="**Markdown is awesome!**" />
+        <Markdown source="**Markdown is awesome! :)**" plugins={[Emoji]} />
 
         {/* Or pass it as children */}
         {/* You can nest React components, too */}
@@ -47,6 +48,7 @@ Available props:
 - `options` - Hash of Remarkable options
 - `source`  - Markdown source. You can also pass the source as children, which allows you to mix React components and Markdown.
 - `container` - Element to use as container. Defaults to `div`.
+- `plugins` - Array of remarkable plugins
 
 ## Syntax Highlighting
 
