@@ -8,7 +8,7 @@
     "url": "https://github.com/acdlite/react-remarkable.git"
   },
   "dependencies": {
-    "remarkable": "^1.7.1"
+    "remarkable": "^1.x"
   },
   "devDependencies": {
     "babel": "^5.1.13"
