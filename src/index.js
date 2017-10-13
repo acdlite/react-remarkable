@@ -23,12 +23,12 @@ class Remarkable extends React.Component {
 
   content() {
     if (this.props.source) {
-      return <span dangerouslySetInnerHTML={{ __html: this.renderMarkdown(this.props.source) }} />;
+      return <div dangerouslySetInnerHTML={{ __html: this.renderMarkdown(this.props.source) }} />;
     }
     else {
       return React.Children.map(this.props.children, child => {
         if (typeof child === 'string') {
-          return <span dangerouslySetInnerHTML={{ __html: this.renderMarkdown(child) }} />;
+          return <div dangerouslySetInnerHTML={{ __html: this.renderMarkdown(child) }} />;
         }
         else {
           return child;
