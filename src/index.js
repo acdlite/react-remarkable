@@ -9,7 +9,7 @@ class Remarkable extends React.Component {
     var Container = this.props.container;
 
     return (
-      <Container>
+      <Container {...this.props}>
         {this.content()}
       </Container>
     );
