@@ -22,13 +22,15 @@ class Remarkable extends React.Component {
   }
 
   content() {
+    var Wrapper = this.props.contentWrapper;
+
     if (this.props.source) {
-      return <span dangerouslySetInnerHTML={{ __html: this.renderMarkdown(this.props.source) }} />;
+      return <Wrapper dangerouslySetInnerHTML={{ __html: this.renderMarkdown(this.props.source) }} />;
     }
     else {
       return React.Children.map(this.props.children, child => {
         if (typeof child === 'string') {
-          return <span dangerouslySetInnerHTML={{ __html: this.renderMarkdown(child) }} />;
+          return <Wrapper dangerouslySetInnerHTML={{ __html: this.renderMarkdown(child) }} />;
         }
         else {
           return child;
@@ -48,6 +50,7 @@ class Remarkable extends React.Component {
 
 Remarkable.defaultProps = {
   container: 'div',
+  contentWrapper: 'span',
   options: {},
 };
 
