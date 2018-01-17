@@ -10,36 +10,28 @@ npm install --save react-remarkable
 ## Usage
 
 ```jsx
+import React from 'react';
+import Markdown from 'react-remarkable';
 
-var React = require('react');
-var Markdown = require('react-remarkable');
+const MyComponent = () => (
+  <div>
+    {/* Pass Markdown source to the `source` prop */}
+    <Markdown source="**Markdown is awesome!**" />
 
-var MyComponent = React.createClass({
+    {/* Or pass it as children */}
+    {/* You can nest React components, too */}
+    <Markdown>{`
+      ## Reasons React is great
 
-  render() {
-    return (
-      <div>
-        {/* Pass Markdown source to the `source` prop */}
-        <Markdown source="**Markdown is awesome!**" />
+      1. Server-side rendering
+      2. This totally works:
 
-        {/* Or pass it as children */}
-        {/* You can nest React components, too */}
-        <Markdown>{`
-          ## Reasons React is great
+      <SomeOtherAmazingComponent />
 
-          1. Server-side rendering
-          2. This totally works:
-
-          <SomeOtherAmazingComponent />
-
-          Pretty neat!
-        `}</Markdown>
-      </div>
-    );
-  }
-
-});
-
+      Pretty neat!
+    `}</Markdown>
+  </div>
+);
 ```
 
 Available props:
