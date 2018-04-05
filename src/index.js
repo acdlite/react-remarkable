@@ -7,10 +7,19 @@ import Markdown from 'remarkable';
 class Remarkable extends React.Component {
 
   render() {
-    var Container = this.props.container;
+    var {
+      container: Container,
+      children,
+      contentWrapper,
+      options,
+      plugins,
+      source,
+      // ⬆ remove Remarkable props
+      ...props // ⬅ only pass non-Remarkable props
+    } = this.props;
 
     return (
-      <Container>
+      <Container {...props}>
         {this.content()}
       </Container>
     );
@@ -71,13 +80,15 @@ class Remarkable extends React.Component {
 }
 
 Remarkable.propTypes = {
-  container: PropTypes.string,
-  options: PropTypes.object,
-  source: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
-  ])
+  ]),
+  container: PropTypes.string,
+  contentWrapper: PropTypes.string,
+  options: PropTypes.object,
+  plugins: PropTypes.arrayOf(PropTypes.string),
+  source: PropTypes.string,
 };
 
 Remarkable.defaultProps = {
