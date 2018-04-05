@@ -5,20 +5,6 @@ import PropTypes from 'prop-types';
 import Markdown from 'remarkable';
 
 class Remarkable extends React.Component {
-  static propTypes = {
-    container: PropTypes.string,
-    options: PropTypes.object,
-    source: PropTypes.string,
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.node),
-      PropTypes.node
-    ])
-  }
-
-  static defaultProps = {
-    container: 'div',
-    options: {}
-  }
 
   render() {
     var Container = this.props.container;
@@ -75,6 +61,16 @@ class Remarkable extends React.Component {
     return this.md.render(source);
   }
 }
+
+Remarkable.propTypes = {
+  container: PropTypes.string,
+  options: PropTypes.object,
+  source: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ])
+};
 
 Remarkable.defaultProps = {
   container: 'div',
