@@ -6,23 +6,10 @@ import Markdown from 'remarkable';
 
 class Remarkable extends React.Component {
 
-  render() {
-    var {
-      container: Container,
-      children,
-      contentWrapper,
-      options,
-      plugins,
-      source,
-      // ⬆ remove Remarkable props
-      ...props // ⬅ only pass non-Remarkable props
-    } = this.props;
-
-    return (
-      <Container {...props}>
-        {this.content()}
-      </Container>
-    );
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.options !== this.props.options) {
+      this.md = this.createMarkdown(nextProps.options, nextProps.plugins);
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -40,30 +27,6 @@ class Remarkable extends React.Component {
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextProps.options !== this.props.options) {
-      this.md = this.createMarkdown(nextProps.options, nextProps.plugins);
-    }
-  }
-
-  content() {
-    var Wrapper = this.props.contentWrapper;
-
-    if (this.props.source) {
-      return <Wrapper dangerouslySetInnerHTML={{ __html: this.renderMarkdown(this.props.source) }} />;
-    }
-    else {
-      return React.Children.map(this.props.children, child => {
-        if (typeof child === 'string') {
-          return <Wrapper dangerouslySetInnerHTML={{ __html: this.renderMarkdown(child) }} />;
-        }
-        else {
-          return child;
-        }
-      });
-    }
-  }
-
   renderMarkdown(source) {
     if (!this.md) {
       this.md = this.createMarkdown(this.props.options, this.props.plugins);
@@ -77,6 +40,47 @@ class Remarkable extends React.Component {
       return md.use(plugin);
     }, new Markdown(options));
   }
+
+  render() {
+    var {
+      container: Container,
+      children,
+      options,
+      plugins,
+      source,
+      // ⬆ remove Remarkable props
+      ...props // ⬅ only pass non-Remarkable props
+    } = this.props;
+
+    if (!children && !source) {
+      return null;
+    }
+
+    if (children) {
+      return React.Children.map(children, child => {
+        if (typeof child === 'string') {
+          return (
+            <Container
+              {...props}
+              dangerouslySetInnerHTML={{
+                __html: this.renderMarkdown(child)
+              }}
+            />
+          );
+        }
+        return child;
+      });
+    }
+
+    return (
+      <Container
+        {...props}
+        dangerouslySetInnerHTML={{
+          __html: this.renderMarkdown(source)
+        }}
+      />
+    );
+  }
 }
 
 Remarkable.propTypes = {
@@ -85,7 +89,6 @@ Remarkable.propTypes = {
     PropTypes.node,
   ]),
   container: PropTypes.string,
-  contentWrapper: PropTypes.string,
   options: PropTypes.object,
   plugins: PropTypes.arrayOf(PropTypes.string),
   source: PropTypes.string,
@@ -93,7 +96,6 @@ Remarkable.propTypes = {
 
 Remarkable.defaultProps = {
   container: 'div',
-  contentWrapper: 'span',
   options: {},
   plugins: [],
 };
