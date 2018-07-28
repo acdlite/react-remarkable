@@ -1,5 +1,5 @@
 react-remarkable
-=================
+================
 
 A React component for rendering Markdown with [remarkable](https://github.com/jonschlinkert/remarkable).
 
@@ -10,36 +10,29 @@ npm install --save react-remarkable
 ## Usage
 
 ```jsx
+import React from 'react';
+import Markdown from 'react-remarkable';
+import Emoji from 'remarkable-emoji';
 
-var React = require('react');
-var Markdown = require('react-remarkable');
+const MyComponent = () => (
+  <div>
+    {/* Pass Markdown source to the `source` prop */}
+    <Markdown source="**Markdown is awesome! :)**" plugins={[Emoji]} />
 
-var MyComponent = React.createClass({
+    {/* Or pass it as children */}
+    {/* You can nest React components, too */}
+    <Markdown>{`
+      ## Reasons React is great
 
-  render() {
-    return (
-      <div>
-        {/* Pass Markdown source to the `source` prop */}
-        <Markdown source="**Markdown is awesome!**" />
+      1. Server-side rendering
+      2. This totally works:
 
-        {/* Or pass it as children */}
-        {/* You can nest React components, too */}
-        <Markdown>{`
-          ## Reasons React is great
+      <SomeOtherAmazingComponent />
 
-          1. Server-side rendering
-          2. This totally works:
-
-          <SomeOtherAmazingComponent />
-
-          Pretty neat!
-        `}</Markdown>
-      </div>
-    );
-  }
-
-});
-
+      Pretty neat!
+    `}</Markdown>
+  </div>
+);
 ```
 
 Available props:
@@ -47,6 +40,7 @@ Available props:
 - `options` - Hash of Remarkable options
 - `source`  - Markdown source. You can also pass the source as children, which allows you to mix React components and Markdown.
 - `container` - Element to use as container. Defaults to `div`.
+- `plugins` - Array of remarkable plugins
 
 ## Syntax Highlighting
 
