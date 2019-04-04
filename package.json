@@ -8,10 +8,22 @@
     "url": "https://github.com/acdlite/react-remarkable.git"
   },
   "dependencies": {
-    "remarkable": "^1.4.1"
+    "remarkable": "^1.7.1"
   },
   "devDependencies": {
-    "babel": "^5.1.13"
+    "@babel/core": "^7.4.3",
+    "@babel/cli": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0"
+  },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-transform-modules-commonjs"
+    ],
+    "presets": [
+      "@babel/preset-react",
+      "@babel/preset-env"
+    ]
   },
   "scripts": {
     "build": "babel src -d dist --modules common",
